@@ -2,7 +2,9 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const { Util } = require('discord.js');
 const fs = require("fs");
-const { GOOGLE_API_KEY, PREFIX } = require('./config.js');
+const { PREFIX } = require('./config.js');
+const GOOGLE_API_KEY = process.env.googletoken;
+cosnt token = process.process.env.token;
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const youtube = new YouTube(GOOGLE_API_KEY);
@@ -423,4 +425,4 @@ bot.on("message", async message => {
 
 });
 
-bot.login(botconfig.token);
+bot.login(token).catch(err => console.log(err));
