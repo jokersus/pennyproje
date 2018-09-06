@@ -3,9 +3,9 @@ const fs = require("fs");
 const strength = require("../playerstats/strength.json");
 const botconfig = require("../botconfig.json");
 const questL = require("../questhandler/questcompleted.json");
-const grimL = require("../playerstats/grim hunting.json");
+const fishL = require("../playerstats/fishing.json");
 const mineL = require("../playerstats/mining.json");
-const grimInv = require("../playerinventory/grim.json");
+const fishInv = require("../playerinventory/fish.json");
 const ore = require("../playerinventory/ore.json");
 const purple = botconfig.purple;
 

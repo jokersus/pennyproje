@@ -20,6 +20,7 @@ module.exports.run = async (bot, message, args) => {
   if(!reason) return message.reply("Please supply a reason.");
 
   let muterole = message.guild.roles.find(`name`, "muted");
+  //start of create role
   if(!muterole){
     try{
       muterole = await message.guild.createRole({
@@ -37,6 +38,7 @@ module.exports.run = async (bot, message, args) => {
       console.log(e.stack);
     }
   }
+  //end of create role
   let mutetime = args[1];
   if(!mutetime) return message.reply("You didn't specify a time!");
 
@@ -68,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
   }, ms(mutetime));
 
 
-
+//end of module
 }
 
 module.exports.help = {

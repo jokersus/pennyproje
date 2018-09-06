@@ -3,8 +3,8 @@ const fs = require("fs");
 const strength = require("../playerstats/strength.json");
 const botconfig = require("../botconfig.json");
 const questL = require("../questhandler/questcompleted.json");
-const grimL = require("../playerstats/grim hunting.json");
-const grimInv = require("../playerinventory/grim.json");
+const fishL = require("../playerstats/fishing.json");
+const fishInv = require("../playerinventory/fish.json");
 const mineInv = require("../playerinventory/ore.json");
 const woodInv = require("../playerinventory/wood.json");
 const meatInv = require("../playerinventory/meat.json");
@@ -38,11 +38,11 @@ module.exports.run = async (bot, message, args) => {
 
   if(args[0] === "grimpost"){
 
-  if(!grimInv[message.author.id]) return message.reply("You have nothing to sell.");
-  let curgrim = grimInv[message.author.id].grim;
-  if(number > curgrim) return message.reply("You don't have that many to sell.").then(msg => {msg.delete(5000)});
-  grimInv[message.author.id].grim = curgrim - number;
-  fs.writeFile("./playerinventory/grim.json", JSON.stringify(grimInv),  (err) => {
+  if(!fishInv[message.author.id]) return message.reply("You have nothing to sell.");
+  let curfish = fishInv[message.author.id].fish;
+  if(number > curfish) return message.reply("You don't have that many to sell.").then(msg => {msg.delete(5000)});
+  fishInv[message.author.id].fish = curfish - number;
+  fs.writeFile("./playerinventory/fish.json", JSON.stringify(fishInv),  (err) => {
     if (err) console.log(err)
   });
   coins[message.author.id].coins = curcoins + price;

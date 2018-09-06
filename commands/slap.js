@@ -34,7 +34,6 @@ module.exports.run = async(bot, message, args) => {
                     .setColor(0xff0000)
                     .setDescription(`${message.author} is slapping themselves`)
                     .setImage(selfslap);
-                if(slapuser.id === message.author.id) return message.channel.send({selfembed});
 
                 const embed = new Discord.RichEmbed()
                     .setColor(0xff0000)

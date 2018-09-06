@@ -3,17 +3,17 @@ const fs = require("fs");
 const strength = require("../playerstats/strength.json");
 const botconfig = require("../botconfig.json");
 const questL = require("../questhandler/questcompleted.json");
-const grimL = require("../playerstats/grim hunting.json");
+const fishL = require("../playerstats/fishing.json");
 const mineL = require("../playerstats/mining.json");
 const wclvl = require("../playerstats/woodcutting.json");
 const hlvl = require("../playerstats/hunting.json");
-const grimInv = require("../playerinventory/grim.json");
+const fishInv = require("../playerinventory/fish.json");
 const purple = botconfig.purple;
 
 module.exports.run = async (bot, message, args) => {
 
-  if(!grimL[message.author.id]){
-    grimL[message.author.id] = {
+  if(!fishL[message.author.id]){
+    fishL[message.author.id] = {
       level: 1,
       xp: 0
     };
@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
   }
 
   message.delete();
-  let flvl = grimL[message.author.id].level;
+  let flvl = fishL[message.author.id].level;
   let mlvl = mineL[message.author.id].level;
   let woodlvl = wclvl[message.author.id].level;
   let huntlvl = hlvl[message.author.id].level;

@@ -10,15 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "discord.js-arbitrary-ffmpeg": "^1.0.0",
-    "ffmpeg": "0.0.4",
-    "ffmpeg-binaries": "^4.0.0",
     "ms": "^2.1.1",
     "nodemon": "^1.18.3",
-    "opusscript": "0.0.6",
-    "simple-youtube-api": "^5.0.2",
-    "superagent": "^3.8.3",
-    "weather-js": "^2.0.0",
-    "ytdl-core": "^0.24.0"
+    "superagent": "^3.8.3"
   }
 }

@@ -3,7 +3,7 @@ const fs = require("fs");
 let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) => {
-
+  
 
   if(!coins[message.author.id]){
     coins[message.author.id] = {
@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     };
     return message.reply(`Sorry, you have ${coins[message.author.id].coins} pennies.`);
   }
-
+  //let cointoadd = parseINT(args[1]);
   if(isNaN(args[1])) return message.reply("Ugh... What? ")
 
   if(coins[message.author.id].coins < args [2]) return message.reply(`Sorry, you have ${coins[message.author.id].coins} pennies.`);

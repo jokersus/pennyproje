@@ -3,17 +3,17 @@ const fs = require("fs");
 const strength = require("../playerstats/strength.json");
 const botconfig = require("../botconfig.json");
 const questL = require("../questhandler/questcompleted.json");
-const grimL = require("../playerstats/grim hunting.json");
-const grimInv = require("../playerinventory/grim.json");
+const fishL = require("../playerstats/fishing.json");
+const fishInv = require("../playerinventory/fish.json");
 const wood = require("../playerinventory/wood.json");
 const ore = require("../playerinventory/ore.json");
 const meat = require("../playerinventory/meat.json");
 const purple = botconfig.purple;
 
 module.exports.run = async (bot, message, args) => {
-  if(!grimInv[message.author.id]){
-    grimInv[message.author.id] = {
-      grim: 0
+  if(!fishInv[message.author.id]){
+    fishInv[message.author.id] = {
+      fish: 0
     };
   }
 
@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
     }
   }
 
-  let grimamt = grimInv[message.author.id].grim;
+  let fishamt = fishInv[message.author.id].fish;
   let oreamt = ore[message.author.id].ore;
   let woodamt = wood[message.author.id].wood;
   let meatamt = meat[message.author.id].meat;
@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
   .setThumbnail(message.author.displayAvatarURL)
   .setColor(purple)
   .setTitle("Inventory")
-  .addField("Demon Skin", grimamt, true)
+  .addField("Demon Skin", fishamt, true)
   .addField("⛏Ore", oreamt, true)
   .addField("🌲Wood", woodamt, true);
   //.addField("🍖Meat", meatamt, true);
