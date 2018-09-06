@@ -25,7 +25,7 @@ module.exports.run = async(bot, message, args) => {
 
 
 
-                let slapuser = message.mentions.members.first()) || message.guild.members.get(args[0]);
+                let slapuser = message.mentions.members.first()
                 if(!slapuser){
                     message.reply(`Who do you want to slap?`)
                   }
