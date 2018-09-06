@@ -1,6 +1,6 @@
 {
-"token": "NDY0NTk1Nzc0NjgwOTg5Njk2.DjUYAw.3yBf18qIBnSUyStKTuM_WF20a_g",
-"prefix":"p>",
+"token": "process.env.token",
+"prefix":">",
 "red": "#b70000",
 "orange": "#ff6a00",
 "green": "#00ff26",
