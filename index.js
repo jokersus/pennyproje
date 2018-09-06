@@ -1,5 +1,5 @@
 const botconfig = require("./botconfig.json");
-const token = process.emi.token;
+const token = process.emv.token;
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
@@ -202,7 +202,7 @@ bot.on("message", async message => {
     .addField("New Level", curlvl + 1);
 
 
-    message.channel.send(lvlup).then(msg => {msg.delete(5000)});
+    //message.channel.send(lvlup).then(msg => {msg.delete(5000)});
   }
   fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
     if(err) console.log(err)
