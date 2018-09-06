@@ -1,9 +1,9 @@
 const botconfig = require("./botconfig.json");
-const token = process.emv.token;
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
+const token = process.emv.token;
 let rcoins = require("./playerequipment/coins.json");
 let coins = require("./coins.json");
 let xp = require("./xp.json");
