@@ -1,5 +1,5 @@
 {
-"token": "NDY0NTk1Nzc0NjgwOTg5Njk2.DjUYAw.3yBf18qIBnSUyStKTuM_WF20a_g",
+"token": "process.env.token",
 "prefix":"p>",
 "red": "#b70000",
 "orange": "#ff6a00",

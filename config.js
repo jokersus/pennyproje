@@ -1,2 +1,2 @@
-exports.GOOGLE_API_KEY = 'AIzaSyDj7xDagAKs0PmgZIPI6Obg_RW6UfLTlMc';
+exports.GOOGLE_API_KEY = 'process.env.exports.GOOGLE_API_KEY';
 exports.PREFIX = '>'
