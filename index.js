@@ -83,7 +83,7 @@ bot.on("channelDelete", async channel => {
 
 bot.on("ready", () => {
   console.log(`Penny has started, with ${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`);
-  bot.user.setActivity(`with ${bot.users.size} users on INTSL`);
+  bot.user.setActivity("the Vytal Festival", {type: "WATCHING"});
 });
 
 
