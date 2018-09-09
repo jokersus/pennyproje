@@ -2,8 +2,8 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
-bot.commands = new Discord.Collection();
 const token = process.env.token;
+bot.commands = new Discord.Collection();
 let rcoins = require("./playerequipment/coins.json");
 let coins = require("./coins.json");
 let xp = require("./xp.json");
@@ -29,12 +29,13 @@ fs.readdir("./commands/", (err, files) =>  {
   });
 });
 
-//bot.on("guildMemberAdd", async member => {
-  //console.log(`${member.id} joined the server.`);
+bot.on("guildMemberAdd", async member => {
+  console.log(`${member.id} joined the server.`);
 
-  //let welcomechannel = member.guild.channels.find(`name`, "smalltalk");
-  //welcomechannel.send(`LOOK OUT! ${member} has joined the fam! Make sure to read the #rules and make an #introduction so we can give you roles for gender, location and/or nationality.`);
-//});
+  let welcomechannel = member.guild.channels.find(`name`, "penny");
+  welcomechannel.send(`**Salutations** ${member} **! Welcome to I'll name this server later Make sure to read the** <#417055055355576330>  **and give us an** <#451991249193533441> **!
+You can also get** <#470308628725760000> <a:INTSL_Penny_Polendina_dance:484319534778417172>  https://gph.is/2QmZtYu`);
+});
 
 //bot.on("guildMemberRemove", async member => {
 
@@ -83,7 +84,7 @@ bot.on("channelDelete", async channel => {
 
 bot.on("ready", () => {
   console.log(`Penny has started, with ${bot.users.size} users, in ${bot.channels.size} channels of ${bot.guilds.size} guilds.`);
-  bot.user.setActivity("the Vytal Festival", {type: "WATCHING"});
+  bot.user.setActivity("RWBY", {type: "WATCHING"});
 });
 
 
@@ -216,7 +217,6 @@ bot.on("message", async message => {
 
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
     if(commandfile) commandfile.run(bot,message,args);
-
 
 
 
