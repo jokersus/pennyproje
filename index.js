@@ -2,6 +2,8 @@ const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
+const path = require('path');
+const sqlite = require('sqlite');
 const token = process.env.token;
 bot.commands = new Discord.Collection();
 let rcoins = require("./playerequipment/coins.json");
@@ -11,6 +13,10 @@ let purple = botconfig.purple;
 let cooldown = new Set();
 let cdseconds = 5;
 const chratis_cooldown_time = 5;
+
+sqlite.open(path.join(__dirname, 'settings.sqlite3')).then(db => {
+	db.migrate().then(db => bot.database = db);
+});
 
 fs.readdir("./commands/", (err, files) =>  {
 
