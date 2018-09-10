@@ -1,58 +1,46 @@
 const Discord = require("discord.js");
-const fs = require("fs");
-const ms = require("ms");
+const { RichEmbed } = require("discord.js");
+const data = require("../storedata/afk.json");
+const { remove, insertOrReplace } = require('../databaseHandler.js');
 
 module.exports.run = async (bot, message, args) => {
-
-if (msg.suffix) {
-		if (msg.suffix === ".") {
-			memberDocument.afk_message = null;
-			msg.channel.send({
-				embed: {
-					color: Colors.GREEN,
-					title: `Welcome back! 🎊`,
-					description: `I removed your AFK message in this server.`,
-					footer: {
-						text: `You can set a new one by using "${msg.guild.commandPrefix}${commandData.name} <message>"`,
-					},
-				},
-			});
-		} else {
-			memberDocument.afk_message = msg.suffix;
-			msg.channel.send({
-				embed: {
-					color: Colors.GREEN,
-					description: `Alright, I will now show that message when you are mentioned in chat. 👌`,
-					footer: {
-						text: `Use "${msg.guild.commandPrefix}${commandData.name} ." to remove it`,
-					},
-				},
-			});
-		}
-	} else if (memberDocument.afk_message) {
-		msg.channel.send({
-			embed: {
-				color: Colors.BLUE,
-				title: `Your current AFK message is:`,
-				description: `${memberDocument.afk_message}`,
-				footer: {
-					text: `Use "${msg.guild.commandPrefix}${commandData.name} <message>" to change it or "${msg.guild.commandPrefix}${commandData.name} ." to remove it.`,
-				},
-			},
+	if (!args.length) { // just !afk
+		remove(message.author.id, bot.database).then(entry => {
+			if (entry.stmt.changes) {	// If in the database
+				return message.channel.send(new RichEmbed()
+					.setColor('GREEN')
+					.setTitle('Removed your AFK message')
+				);
+			} else {	// if not in the database, set default afk message
+				insertOrReplace(message.author.id, bot.database, `AFK`).then(stmt => {
+					return message.channel.send(new RichEmbed()
+						.setColor('GREEN')
+						.setTitle('Set you a default AFK message')
+					);
+				}).catch(error => {
+					console.error(error);
+					return sendError(message.channel, 'An error occured. Please try again later.');
+				});
+			}
 		});
 	} else {
-		msg.channel.send({
-			embed: {
-				color: Colors.LIGHT_RED,
-				description: `You don't have an AFK message set right now! ⌨`,
-				footer: {
-					text: `You can set one by using "${msg.guild.commandPrefix}${commandData.name} <message>"`,
-				},
-			},
-		});
+		const afkMessage = args.join(' ');
+		insertOrReplace(message.author.id, bot.database, afkMessage).then(stmt => {
+			return message.channel.send(new RichEmbed()
+				.setColor('GREEN')
+				.addField('Set your AFK message', afkMessage)
+			);
+		})
 	}
+};
+
+function sendError(channel, message) {
+	return channel.send(new RichEmbed()
+		.setColor('RED')
+		.setTitle(message)
+	);
 };
 
 module.exports.help = {
   name: "afk"
-}
+};
