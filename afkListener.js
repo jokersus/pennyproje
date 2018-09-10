@@ -13,16 +13,14 @@ module.exports = async message => {
 				}
 			}
 		}
-		message.mentions.members
-			.tap(member => {
-				getMessage(message.author.id, message.client.database)
+		message.mentions.users
+			.array()
+			.forEach(m => {
+				console.log(m.username);
+				getMessage(m.id, message.client.database)
 					.then(entry => {
 						if (entry) {
-							if (message.author.id === member.id) {
-								return;
-							} else {
-								message.channel.send(`${member.user.tag} is AFK: ${entry.message}\n-- ${moment(entry.datetime_text).fromNow()}`);
-							}
+							message.channel.send(`${m.tag} is AFK: ${entry.message}\n-- ${moment(entry.datetime_text).fromNow()}`);
 						}
 					});
 			});
