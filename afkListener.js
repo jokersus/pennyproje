@@ -6,13 +6,14 @@ module.exports = async message => {
 		return;
 	} else {
 		if (message.member.lastMessage) {
-			if ((Date.now() - message.member.lastMessage.createdTimestamp) > 10000) {
-				const query = await remove(message.author.id, message.client.database);
-				if (query.stmt.changes) {
-					return message.channel.send(`${message.author.toString()} removed your AFK message.`);
-				}
-			}
-		}
+            if ((Date.now() - message.member.lastMessage.createdTimestamp) > 10000) {
+                remove(message.author.id, message.client.database).then(query => {
+                        if (query.stmt.changes) {
+                            return message.channel.send(`${message.author.toString()} removed your AFK message.`);
+                        }
+        });
+    }
+}
 		message.mentions.users
 			.array()
 			.forEach(m => {
