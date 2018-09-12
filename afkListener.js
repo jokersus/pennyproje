@@ -8,7 +8,7 @@ module.exports = async message => {
 		const query = await remove(message.author.id, message.client.database);
 		if (query.stmt.changes) {
 			return message.channel.send(`${message.author.toString()} removed your AFK message.`);
-		}
+    }
 		message.mentions.users
 			.array()
 			.forEach(m => {
