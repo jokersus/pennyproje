@@ -16,7 +16,7 @@ module.exports = async message => {
 				getMessage(m.id, message.client.database)
 					.then(entry => {
 						if (entry) {
-							message.channel.send(`${m.tag} is AFK: ${entry.message}\n-- ${moment(entry.datetime_text).fromNow()}`);
+							message.channel.send(`${message.author.toString()} ${m.tag} is AFK: ${entry.message}\n-- ${moment(entry.datetime_text).fromNow()}`);
 						}
 					});
 			});
