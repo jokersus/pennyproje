@@ -5,13 +5,9 @@ module.exports = async message => {
 	if (!message.guild) {
 		return;
 	} else {
-		if (message.member.lastMessage) {
-			if ((Date.now() - message.member.lastMessage.createdTimestamp) > 300000) {
-				const query = await remove(message.author.id, message.client.database);
-				if (query.stmt.changes) {
-					return message.channel.send(`${message.author.toString()} removed your AFK message.`);
-				}
-			}
+		const query = await remove(message.author.id, message.client.database);
+		if (query.stmt.changes) {
+			return message.channel.send(`${message.author.toString()} removed your AFK message.`);
 		}
 		message.mentions.users
 			.array()
